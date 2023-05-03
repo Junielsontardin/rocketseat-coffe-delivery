@@ -5,6 +5,7 @@ export const QuantitySelectorContainer = styled.div`
   padding: 0.5rem;
   gap: 4px;
   height: 2.375rem;
+  width: fit-content;
   border-radius: 6px;
   background: ${(props) => props.theme['gray-300']};
 

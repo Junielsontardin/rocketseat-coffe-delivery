@@ -14,8 +14,7 @@ export const increaseItemToCartAction = (
 
   const itemOfCartToAddQuantity = items[indexOfItemOnCart]
 
-  const updatedQuantityOfItem =
-    itemOfCartToAddQuantity.quantity + itemToAdd.quantity
+  const updatedQuantityOfItem = ++itemOfCartToAddQuantity.quantity
 
   items[indexOfItemOnCart].quantity = updatedQuantityOfItem
 
@@ -34,8 +33,7 @@ export const decreaseItemToCartAction = (
 
   const itemOfCartToAddQuantity = items[indexOfItemOnCart]
 
-  const updatedQuantityOfItem =
-    itemOfCartToAddQuantity.quantity - itemToAdd.quantity
+  const updatedQuantityOfItem = --itemOfCartToAddQuantity.quantity
 
   if (updatedQuantityOfItem <= 0) {
     items.splice(indexOfItemOnCart, 1)
