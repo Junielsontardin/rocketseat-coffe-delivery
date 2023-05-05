@@ -8,6 +8,7 @@ import CoffeCard from '../../assets/coffe-card.png'
 import { QuantitySelector } from '../QuantitySelector'
 import { Trash } from '@phosphor-icons/react'
 import { IProduct, useStoreContext } from '../../contexts/storeContext'
+import { formatPriceToBrl } from '../../utils/formatPriceToBrl'
 
 export const ItemCart = (product: IProduct) => {
   const { name, price, quantity } = product
@@ -27,6 +28,8 @@ export const ItemCart = (product: IProduct) => {
     removeItemToCart(product.name)
   }
 
+  const priceItem = formatPriceToBrl(price)
+
   return (
     <ItemCartContainer>
       <img src={CoffeCard} alt="" />
@@ -44,7 +47,7 @@ export const ItemCart = (product: IProduct) => {
           </TrashButton>
         </div>
       </MiddleItemCartContainer>
-      <ItemPriceCart>R$ {price}</ItemPriceCart>
+      <ItemPriceCart>{priceItem}</ItemPriceCart>
     </ItemCartContainer>
   )
 }

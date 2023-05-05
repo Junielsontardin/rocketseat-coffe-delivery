@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useReducer } from 'react'
-import { cartReducer } from '../reducers/cart/reducer'
+import { ActionsTypes, cartReducer } from '../reducers/cart/reducer'
 
 interface IStoreContextProps {
   children: ReactNode
@@ -25,21 +25,21 @@ const StoreContextProvider = ({ children }: IStoreContextProps) => {
 
   const increaseItemToCart = (product: IProduct) => {
     dispatch({
-      type: 'INCREASE_ITEM_CART',
+      type: ActionsTypes.INCREASE_ITEM_CART,
       payload: product,
     })
   }
 
   const decreaseItemToCart = (product: IProduct) => {
     dispatch({
-      type: 'DECREASE_ITEM_CART',
+      type: ActionsTypes.DECREASE_ITEM_CART,
       payload: product,
     })
   }
 
   const removeItemToCart = (id: string) => {
     dispatch({
-      type: 'REMOVE_ITEM_CART',
+      type: ActionsTypes.REMOVE_ITEM_CART,
       payload: id,
     })
   }

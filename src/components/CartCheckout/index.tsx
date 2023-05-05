@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom'
+import { useCheckout } from '../../contexts/checkoutContext'
 import { useStoreContext } from '../../contexts/storeContext'
+import { formatPriceToBrl } from '../../utils/formatPriceToBrl'
 import { ItemCart } from '../ItemCart'
 import {
   CartContainer,
@@ -7,11 +10,23 @@ import {
   FooterCart,
   ListItems,
 } from './style'
+import { useFormContext } from 'react-hook-form'
 
 export const CartCheckout = () => {
   const { cart } = useStoreContext()
+  const { handleSubmit } = useFormContext()
+  const { registerAddress, paymentMethod } = useCheckout()
+  const navigate = useNavigate()
 
   if (!cart.length) return <></>
+
+  const handleSubmitCheckout = (data: any) => {
+    registerAddress(data)
+
+    if (paymentMethod.type) {
+      navigate('/order-placed')
+    }
+  }
 
   const deliveryPrice = 3.5
 
@@ -33,17 +48,19 @@ export const CartCheckout = () => {
         <FooterCart>
           <div>
             <span>Total de itens</span>
-            <span>R$ {totalItensPrice}</span>
+            <span>{formatPriceToBrl(totalItensPrice)}</span>
           </div>
           <div>
             <span>Entrega</span>
-            <span>R$ {deliveryPrice}</span>
+            <span>{formatPriceToBrl(deliveryPrice)}</span>
           </div>
           <div>
             <span>Total</span>
-            <span>R$ {totalOrder}</span>
+            <span>{formatPriceToBrl(totalOrder)}</span>
           </div>
-          <ConfirmOrderButton>Confirmar pedido</ConfirmOrderButton>
+          <ConfirmOrderButton onClick={handleSubmit(handleSubmitCheckout)}>
+            Confirmar pedido
+          </ConfirmOrderButton>
         </FooterCart>
       </CartContent>
     </CartContainer>
