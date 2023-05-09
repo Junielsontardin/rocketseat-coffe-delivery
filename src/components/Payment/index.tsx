@@ -1,4 +1,4 @@
-import { IPaymentMethod, useCheckout } from '../../contexts/checkoutContext'
+import { useStoreContext, IPaymentMethod } from '../../contexts/storeContext'
 import {
   OptionPayment,
   OptionsPayment,
@@ -23,7 +23,7 @@ enum MONEY {
 }
 
 export const Payment = () => {
-  const { paymentMethod, selectPaymentMethod } = useCheckout()
+  const { paymentMethod, selectPaymentMethod } = useStoreContext()
 
   const handleSelectPaymentMethod = (method: IPaymentMethod) => {
     selectPaymentMethod(method)

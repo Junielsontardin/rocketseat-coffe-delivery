@@ -75,10 +75,4 @@ export const ArrayCoffes = [
     description: 'Bebida preparada com grãos de café árabe e especiarias',
     price: '9.90',
   },
-  {
-    name: 'Árabe',
-    peculiaritys: ['Especial', 'Alcóolico'],
-    description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
-    price: '9.90',
-  },
 ]

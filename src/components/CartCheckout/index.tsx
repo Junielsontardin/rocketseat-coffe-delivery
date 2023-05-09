@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { useCheckout } from '../../contexts/checkoutContext'
 import { useStoreContext } from '../../contexts/storeContext'
 import { formatPriceToBrl } from '../../utils/formatPriceToBrl'
 import { ItemCart } from '../ItemCart'
@@ -13,9 +12,8 @@ import {
 import { useFormContext } from 'react-hook-form'
 
 export const CartCheckout = () => {
-  const { cart } = useStoreContext()
+  const { cart, registerAddress, paymentMethod } = useStoreContext()
   const { handleSubmit } = useFormContext()
-  const { registerAddress, paymentMethod } = useCheckout()
   const navigate = useNavigate()
 
   if (!cart.length) return <></>
